@@ -41,7 +41,6 @@ Route::post('showkarzina', [KarzinaController::class, 'show'])->name('showkarzin
 Route::get('karz', [KarzinaController::class, 'karz'])->name('karz');
 Route::post('kerzincreate', [KarzinaController::class, 'store'])->name('ketdi');
 
-
 // Autharisation
 Route::get('/login', [CustomAuthController::class,'login'])->name('login')->middleware('alreadyLoggedIn');
 Route::get('/registration', [CustomAuthController::class,'registration'])->name('registration');

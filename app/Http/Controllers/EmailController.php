@@ -10,10 +10,8 @@ class EmailController extends Controller
 {
     public function create()
     {
-
         return view('email');
     }
-
     public function sendEmail(Request $request)
     {
         $request->validate([
@@ -21,18 +19,15 @@ class EmailController extends Controller
           'subject' => 'required',
           'content' => 'required',
         ]);
-
         $data = [
           'subject' => $request->subject,
           'email' => $request->email,
           'content' => $request->content
         ];
-
         Mail::send('email-template', $data, function($message) use ($data) {
           $message->to($data['email'])
           ->subject($data['subject']);
         });
-
         return back()->with(['message' => 'Email successfully sent!']);
     }
 }
