@@ -76,9 +76,9 @@
                      @endforeach
                      
                   </table>
-                  <a href="w1" class="btn btn-success">Istoriya</a><br><br>
-                  <a href="www" class="btn btn-success">Jami yigim</a><br><br>
-                  <a href="p2" class="btn btn-primary">Menu</a><br><br>
+                  <a href="w1" class="btn btn-success">Istoriya</a>
+                  <a href="www" class="btn btn-success">Jami yigim</a>
+                  <a href="p2" class="btn btn-primary">Menu</a>
             </div>
             
         </div>

@@ -29,6 +29,10 @@
             position: relative;
             left: 43%;
         }
+        .h44{
+            position: relative;
+            left: 33%;
+        }
       
     </style>
 </head>
@@ -55,7 +59,7 @@
                             <td>{{$pro['narx2']}}</td>
                             <td>    
                                 <form method="post" class="delete_form" action="{{ route('delkarzin',$pro->id)}}">
-                                @csrf
+                                    @csrf
                                     @method('DELETE')
                                 <button type="submit" class="btn btn-danger">-</button>
                             
@@ -63,8 +67,28 @@
                         </td>
                      
                        </tr>  
-                     @endforeach                     
+                     @endforeach      
+                   
                   </table>
+                  <table class="table table-borderless">  
+                
+                  <tr>                           
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td><h4 class="h44">{{$k["summa"]}}</h4></td>
+                 
+                  
+                    </tr>  
+               
+                     
+                </table>
+
                   <button type="submit" class="btn btn-primary btn-submit">Sotip Olish</button>
                 </form>
                 <hr>

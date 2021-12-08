@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Pradut extends Migration
+class CreateSummasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class Pradut extends Migration
      */
     public function up()
     {
-        Schema::create('pradut', function (Blueprint $table) {
-            $table->id();            
-            $table->string('name');
-            $table->string('file'); 
-            $table->integer('soni');                     
-            $table->integer('narx');           
-            $table->integer('narx2');           
+        Schema::create('summas', function (Blueprint $table) {
+            $table->id();
+            $table->integer('idd');
+            $table->integer('clent');
+            $table->integer('idy');
+            $table->integer('summa');
             $table->timestamps();
-
         });
     }
 
@@ -32,6 +30,6 @@ class Pradut extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pradut');
+        Schema::dropIfExists('summas');
     }
 }

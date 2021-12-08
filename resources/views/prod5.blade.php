@@ -11,7 +11,12 @@
     <style>
         .td{
             position: relative;
-    right: -86%;
+            right: -86%;
+        }
+        .hr{
+            position: relative;
+            left: 79%;
+}
         }
     </style>
 </head>
@@ -41,20 +46,21 @@
 
                      </tr>
                      @endforeach
+                  
+                </table>
 
-                     @foreach ($date as $da)
+                <table class="table table-dark table-striped">
+               
+                    @foreach ($date as $da)
                      <tr>                        
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>                        
-                        <td><h4>{{$da['narx2']}}</h4></td>
+                                          
+                        <td><h4 class="hr">{{$da['narx2']}}</h4></td>
                      </tr>
                  @endforeach
                      
                 </table>
-                  <a href="w1" class="btn btn-success">Istoriya</a><br><br>                 
-                  <a href="p2" class="btn btn-primary">Menu</a><br><br>
+                  <a href="w1" class="btn btn-success">Istoriya</a>                
+                  <a href="p2" class="btn btn-primary">Menu</a>
             </div>
      
         </div>

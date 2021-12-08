@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\Pradut;
 use App\Models\Prad2;
 use App\Models\pradut3;

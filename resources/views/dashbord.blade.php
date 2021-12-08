@@ -82,7 +82,7 @@
                                
                                 {{-- <input type="number" name="soni" required placeholder="Qancha olasiz"><br> --}}
                             
-                                <button id="dd" type="submit" class="btn btn-primary">Sotib olish</button>
+                                <button id="dd" class="btn btn-primary">Sotib olish</button>
                                 </form>
                                 <form action="{{ route('showkarzina') }}" method="POST">
                                     @csrf
