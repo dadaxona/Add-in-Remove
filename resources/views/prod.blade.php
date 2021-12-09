@@ -26,6 +26,15 @@
             <div class="col-12">
                     <h1>Kiritish</h1>
                     <form method="POST" action="/prod" enctype="multipart/form-data" class="form-control" >
+                        @if (Session::has('success'))
+
+                        <div class="alert alert-success text-center">              
+            
+                            <p>{{ Session::get('success') }}</p>
+            
+                        </div>
+            
+                    @endif  
                         @csrf
                             <div>
                                 <input type="text" name="name" placeholder="Tavar nomi" value="{{ old('name')}}" class="form-control" >
@@ -50,10 +59,7 @@
                             <div>
                                 <button type="submit" name="Save" class="btn btn-primary">Jonatish</button>
                             </div>
-
-                        </form>
-
-                     
+                        </form>                     
             </div>
         
             <div class="col-12">
@@ -67,8 +73,8 @@
                             <td>{{$pro['name']}}</td>
                             <td><img src="{{ asset($pro['file'])}}" id="im"></td>
                             <td>{{$pro['soni']}}</td>
-                            <td>{{$pro['narx']}}</td>
-                            <td>{{$pro['narx2']}}</td>
+                            <td>{{$pro['narx']}}$</td>
+                            <td>{{$pro['narx2']}}$</td>
                             <td>{{$pro['created_at']}}</td>
                             <td><a href="{{'ed/'.$pro['id']}}" class="btn btn-success">Yangilash</a><td>
                             <td><a href="{{'ddeel/'.$pro['id']}}" class="btn btn-danger">Ocirish</a><td>
@@ -81,7 +87,6 @@
                     <a href="ww" class="btn btn-success">Sotilsh</a>          
                     <a href="www" class="btn btn-success">Jami yigim</a>
                     <a href="ww2" class="btn btn-info">Bozor</a>
-                    <a href="jami" class="btn btn-success">yigim</a>
                     <a href="{{ route('karz') }}" class="btn btn-primary">Karzina</a>
       
             </div>

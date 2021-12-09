@@ -76,7 +76,7 @@ Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.in
 Route::post('/feedback', [FeedbackController::class,'send'])->name('feedback.send');
 
 Route::get('jami',[PradutController::class,'index']);
-Route::post('prod',[PradutController::class,'create']);
+Route::post('prod',[PradutController::class,'create'])->name('jonat');
 Route::get('p2',[PradutController::class,'show']);
 Route::get('ed/{id}',[PradutController::class,'edit']);
 Route::post('upda/',[PradutController::class,'update'])->name('updatename');

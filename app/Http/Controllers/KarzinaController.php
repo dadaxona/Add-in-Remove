@@ -16,7 +16,6 @@ class KarzinaController extends Controller
         $id=$clent;
         $karzin = Karzina::query()->where('clent', 'LIKE', "%{$id}%")->get();
         $k = Summa::where('clent', '=', $id)->first();
-        // $data = Summa::where('id','=',)->first();
         return view('karzina.karzina', ["k"=>$k] ,compact('karzin'));      
     }
     public function show(Request $request)

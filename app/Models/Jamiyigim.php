@@ -9,5 +9,6 @@ class Jamiyigim extends Model
 {
     use HasFactory;
     protected $table = 'jamiyigim';
+    public $fillable = ['narx2'];
     public $timestamps = false;
 }

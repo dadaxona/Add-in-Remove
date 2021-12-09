@@ -39,6 +39,7 @@
 <body>
     <br>
     <div class="container">
+        <h1>Karzna</h1>
         <div class="row">          
                            
             </div>        
@@ -61,7 +62,7 @@
                                 <form method="post" class="delete_form" action="{{ route('delkarzin',$pro->id)}}">
                                     @csrf
                                     @method('DELETE')
-                                <button type="submit" class="btn btn-danger">-</button>
+                                <button type="submit" class="btn btn-danger">X</button>
                             
                             </form>
                         </td>
@@ -81,7 +82,7 @@
                      <td></td>
                      <td></td>
                      <td></td>
-                     <td><h4 class="h44">{{$k["summa"]}}</h4></td>
+                     <td><h4 class="h44">{{$k["summa"]}}$</h4></td>
                  
                   
                     </tr>  
@@ -92,7 +93,7 @@
                   <button type="submit" class="btn btn-primary btn-submit">Sotip Olish</button>
                 </form>
                 <hr>
-                <a href="/dashbord" id="dob" class="btn btn-success">Qo'shish</a>
+                <a href="/dashbord" id="dob" class="btn btn-success">Tavar Qo'shish</a>
             </div>
         </div>
    

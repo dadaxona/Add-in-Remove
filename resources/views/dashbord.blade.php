@@ -9,12 +9,30 @@
      crossorigin="anonymous">
      <title>Custom Login</title>
      <style>
+        .hhh{
+            text-align: center;
+            padding-block: 55px;
+
+            font-size: 49px;
+            background-color: black;
+            color: #ced3de;
+         }
         #im{
-            width: 50%;
+            width: 86%;
             height: 50%;
         }
+        
+        .na{
+            border: none;
+            margin-top: 6px;
+            font-size: 17px;
+            background: white;
+        }
      input{
-         border: none
+         
+    border: none;
+    margin-right: 10px;
+
      }
      #btn{
         position: relative;
@@ -44,28 +62,80 @@
      #span{
         position: absolute;
      }
+     #claar{
+        background-color: black;
+        padding-block: 89px;
+        color: #757575;
+     }
     </style>
 </head>
 <body>
-
-
+    <h1 class="hhh">Magazin</h1>
     <div class="container">
-        <h1>Internet Magazin</h1>
-        <hr>
-        <h4>{{$data['email']}}</h4>
-        <a href="logaut" class="btn btn-success">Logaut</a>
+   
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          
+                       
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">               
+                <form id="for" action="indexkarzin/{{$data['id']}}" method="GET">
+                    @csrf
+                    <input type="hidden" name="clent" value="{{$data['id']}}">
+                    <button type="submit" class="na" >Karzina</button>
+                </form>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+                <input class="inpu" disabled value="{{$data['email']}}">
+                <a href="logaut" class="btn btn-success">Logaut</a>
+              </form>
+      
+          </div>
+        </div>
+      </nav>
+     
+    </div><br>
+  
+	{{-- .col-	.col-sm-	.col-md-	.col-lg-	.col-xl-	.col-xxl- --}}
+    <div class="container">
         <br>
     
-        <form id="for" action="indexkarzin/{{$data['id']}}" method="GET">
-            @csrf
-            <input type="hidden" name="clent" value="{{$data['id']}}">
-            <button type="submit" id="id" class="btn btn-info">Karzina</button>
-        </form>
-        <hr>  
+
         <div class="row">
-                                               
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif                  
                      @foreach ($prod as $pro)
-                     <div class="col-4">
+                     <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                         <td><img src="{{ asset($pro['file'])}}" id="im"></td>                       
                             <div class="form">
                                 <form action="" method="POST">
@@ -88,7 +158,7 @@
                                     @csrf
                                     <div class="aaaaa">
                                         <input type="number" name="son" id="" placeholder="Qancha olasiz" class="form-control"><br>
-                                        <span id="span" class="text-danger">@error('son') {{$message}}@enderror</span>
+                                        {{-- <span id="span" class="text-danger">@error('son') {{$message}}@enderror</span> --}}
                                     </div>
                                     <input type="hidden" name="clent" value="{{$data['id']}}"><br>
                                     <input type="hidden" name="idy" value="{{$pro['id']}}"><br>
@@ -97,11 +167,54 @@
                             </div>
                         </div>                             
                        
+                     
                      @endforeach        
              
         </div>
     </div>
-    
+    <div id="claar">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <ol>
+                        <li>Contact</li>
+                        <li>Description</li>
+                        <li>Servis</li>
+                        <li>Tel...</li>
+                    </ol>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+               <ul>
+                    <li>Contact</li>
+                    <li>Description</li>
+                    <li>Servis</li>
+                    <li>Tel...</li>
+                </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <ul>
+                        <li>Contact</li>
+                        <li>Description</li>
+                        <li>Servis</li>
+                        <li>Tel...</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <ol>
+                        <li>Contact</li>
+                        <li>Description</li>
+                        <li>Servis</li>
+                        <li>Tel...</li>
+                    </ol>
+                </div>
+            </div>
+
+        </div>
+      
+      
+    </div>
+   
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
  integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
