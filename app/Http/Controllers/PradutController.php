@@ -76,11 +76,12 @@ class PradutController extends Controller
       $prib3=$data->jami=$req["soni"]*$prib2;      
       $data->save();
       
-      $users = DB::table('jamiyigim')->insert(['narx2'=>$prib3]);
+      DB::table('jamiyigim')->insert(['narx2'=>0]);    
+      DB::table('jamiyigim')->insert(['narx2'=>$prib3]);     
       $users = DB::table('jamiyigim')->select('narx2')->first();
       $j=$users->narx2 + $prib3;
       DB::table('jamiyigim')->update(['narx2' => $j]);
-      Jamiyigim::where('id','>',1)->delete();      
+      Jamiyigim::where('id','>',1)->delete();
       return back()->with('success', 'Record Created Successfully.');    
     }
 

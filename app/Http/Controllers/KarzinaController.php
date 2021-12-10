@@ -35,7 +35,7 @@ class KarzinaController extends Controller
             'narx2'=>$data->narx2,
             'son'=>$request->son,
             ]);
-            $user = new Karzin();
+            $user = new Karzin;
             $user->clent = $request->clent;
             $user->idy= $request->idy;
             $user->file= $data->file;
@@ -44,6 +44,13 @@ class KarzinaController extends Controller
             $user->narx2 = $data->narx2;
             $user->son = $request->son;
             $user->save();
+            
+            $sum = new Summa;
+            $sum->idd = $user->id;
+            $sum->clent = $request->clent;
+            $sum->idy = $request->idy;
+            $sum->summa = 0;
+            $sum->save();
 
             $sum = new Summa;
             $sum->idd = $user->id;
@@ -51,7 +58,7 @@ class KarzinaController extends Controller
             $sum->idy = $request->idy;
             $sum->summa = $request->son;
             $sum->save();
-
+          
             $users = Summa::where('clent', '=', $request->clent)->first();     
             $javob=$users->summa+$request->son * $data->narx2;            
             $data = Summa::where(['clent'=>$request->clent])->update(['summa' => $javob]);
