@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Summa extends Model
+class Istoriya extends Model
 {
     use HasFactory;
-    protected $table = 'summas';
-    public $fillable = ['idd','clent','idy','summa'];
+    protected $table = 'istoriyas';
+    public $fillable = ['id','clent','file','name','son','narx2','summa'];
     public $timestamps = true;
 }

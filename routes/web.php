@@ -40,6 +40,7 @@ Route::delete('delkarzin/{id}', [KarzinaController::class, 'delete'])->name('del
 Route::post('showkarzina', [KarzinaController::class, 'show'])->name('showkarzina');
 Route::get('karz', [KarzinaController::class, 'karz'])->name('karz');
 Route::post('kerzincreate', [KarzinaController::class, 'store'])->name('ketdi');
+Route::get('istor/{id}', [KarzinaController::class, 'istor'])->name('istor');
 
 // Autharisation
 Route::get('/login', [CustomAuthController::class,'login'])->name('login')->middleware('alreadyLoggedIn');

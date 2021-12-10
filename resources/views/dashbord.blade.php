@@ -93,6 +93,13 @@
                     <button type="submit" class="na" >Karzina</button>
                 </form>
               </li>
+              <li class="nav-item">               
+                <form id="for" action="istor/{{$data['id']}}" method="GET">
+                    @csrf
+                    <input type="hidden" name="clent" value="{{$data['id']}}">
+                    <button type="submit" class="na" >Istoriya</button>
+                </form>
+              </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Dropdown
