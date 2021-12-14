@@ -57,7 +57,7 @@
                     </div>
                     <div class="form-group">
                         <label for="name"><h4>Verfication Code</h4></label>
-                        <input type="number" class="form-control" placeholder="Vwefication Code" name="code_confirmation" value="{{ old('code_confirmation') }}">
+                        <input type="number" class="form-control" placeholder="Vefication Code" name="code_confirmation" value="{{ old('code_confirmation') }}">
                         <span class="text-danger">@error('code_confirmation') {{$message}}@enderror</span>
                     </div>
                     <br>

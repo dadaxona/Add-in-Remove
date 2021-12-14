@@ -27,7 +27,9 @@ use App\Http\Controllers\AddRemoveFieldController;
 | 
 
 */
-
+Route::get('/', function () {
+    return view('welcome');
+});
 //Add Remowe
 Route::get("addmore",[AddRemoveFieldController::class ,'index'])->name('addmore');
 Route::post('addRemove', [AddRemoveFieldController::class, 'store'])->name('addRemove');
@@ -55,14 +57,8 @@ Route::get('/logaut', [CustomAuthController::class,'logaut']);
 
 Route::get('/ind', [Tekcontroller::class, 'index']);
 Route::post('/subscribe', [Tekcontroller::class, 'subscribe'])->name('subscribe');
-
 Route::get("email", [MailerController::class, "email"])->name("email");
-
 Route::post("send-email", [MailerController::class, "composeEmail"])->name("send-email");
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('test', [Tekcontroller::class, 'index'])->name('test');
 Route::get('test2', [Tekcontroller::class, 'test2'])->middleware('id');
