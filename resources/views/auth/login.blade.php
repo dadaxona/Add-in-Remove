@@ -19,15 +19,11 @@
                 <hr>
                 <form action="{{route('login-user')}}" method="post">
                     @csrf
-                    {{-- @if ($errors->any())
+                    @if (Session::has('fail'))
                     <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                        {{Session::get('fail')}}
                     </div>
-                @endif --}}
+                @endif
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" placeholder="Emaile" name="email"  value="{{old('email')}}">
@@ -38,15 +34,11 @@
                         <input type="password" class="form-control" placeholder="Password" name="password"  value="{{old('password')}}">
                         <span class="text-danger">@error('password') {{$message}}@enderror</span>
                     </div>
-                        @if (Session::has('fail'))
-                            <div class="alert alert-danger">
-                                {{Session::get('fail')}}
-                            </div>
-                        @endif
+                     <br>
                     <div class="form-group">
-                     <input type="submit" name="" id="">
+                    <button type="submit" class="btn btn-info">Kishrish</button>
                     </div>
-                    <a href="registration">Registration</a>
+                    <a href="{{ route('registration') }}">Registration</a>
                 </form>
             </div>
         </div>

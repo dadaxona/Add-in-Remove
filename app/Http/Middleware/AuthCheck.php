@@ -17,7 +17,7 @@ class AuthCheck
     public function handle(Request $request, Closure $next)
     {
         if (!Session()->has('loginID')) {
-            return redirect('login')->with('fail','You have to login frist.');
+            return redirect('login')->with('fail','Xato kirinishga urinyapsiz. Authatizationdan oting!');
 
         }
         return $next($request);

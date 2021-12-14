@@ -1,8 +1,9 @@
 @component('mail::message')
 Werfication Code
 
-
-<h3>Code:  {{$pin}}</h3><br>
+<h2>Name: {{$name}}</h2>
+<h2>Login: {{$email}}</h2>
+<h3>Paassword: {{$password}}</h3><br>
 <hr>
 
 We look forward to communicating more with you. For more information visit our blog.

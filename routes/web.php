@@ -43,8 +43,10 @@ Route::post('kerzincreate', [KarzinaController::class, 'store'])->name('ketdi');
 Route::get('istor/{id}', [KarzinaController::class, 'istor'])->name('istor');
 
 // Autharisation
-Route::get('/login', [CustomAuthController::class,'login'])->name('login')->middleware('alreadyLoggedIn');
+Route::get('/login', [CustomAuthController::class,'login'])->name('login');
 Route::get('/registration', [CustomAuthController::class,'registration'])->name('registration');
+Route::post('/registrU', [CustomAuthController::class,'registrU'])->name('registrU');
+Route::get('/cod/{id}', [CustomAuthController::class,'cod'])->name('cod');
 Route::post('/registr-user', [CustomAuthController::class,'registrUser'])->name('registr-user');
 Route::post('login-user', [CustomAuthController::class,'loginuser'])->name('login-user');
 Route::get('/dashbord', [CustomAuthController::class,'dashbord'])->middleware('isLoggedIn');

@@ -9,5 +9,6 @@ class brend extends Model
 {
     use HasFactory;
     protected $table = 'brends';
+    public $fillable = ['name','email','password','code'];
     public $timestamps = false;
 }

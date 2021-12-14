@@ -11,14 +11,12 @@ class Subscribe extends Mailable
 {
     use Queueable, SerializesModels;
     
-    public $name;
-    public $email;
-    public $password;
-    public function __construct($name,$email,$password)
+    public $pin;
+  
+    public function __construct($pin)
     {
-        $this->name = $name;
-        $this->email = $email;
-        $this->password = $password;
+        $this->pin = $pin;
+      
     }
  
     public function build()

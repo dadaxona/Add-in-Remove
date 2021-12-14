@@ -16,8 +16,8 @@ class KarzinaController extends Controller
     public function index($clent)
     {       
         $id=$clent;
-        $karzin = Karzina::query()->where('clent', 'LIKE', "%{$id}%")->get();
-        $k = Summa::where('clent', '=', $id)->first();
+        $karzin = Karzina::query()->where('clent', 'LIKE', "%{$id}%")->get()??[];
+        $k = Summa::where('clent', '=', $id)->first()??[];
         return view('karzina.karzina', ["k"=>$k] ,compact('karzin'));      
     }
     public function show(Request $request)

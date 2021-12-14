@@ -9,15 +9,15 @@
      crossorigin="anonymous">
      
 
-    <title>Registration</title>
+    <title>Verfiy</title>
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-4 col-md-offiset-4">
-                <h1>Registration</h1>
+            <div class="col-md-8 col-md-offiset-4">
+                <h1 style="color: rgb(7, 189, 7)">Email Verifiqation cods</h1>
                 <hr>
-                <form action="{{ route('registrU')}}" method="post">
+                <form action="{{ route('registr-user') }}" method="post">
                  
                     @if (Session::has('fail'))
                         <div class="alert alert-danger">
@@ -36,26 +36,34 @@
                     @endif --}}
         
                     <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" class="form-control" placeholder="Nmae" name="name" value="{{old('name')}}">
-                        <span class="text-danger">@error('name') {{$message}}@enderror</span>
-                     
+                  
+                        <input type="hidden" class="form-control" placeholder="Nmae" name="name" value="{{ $user->name }}">
+                      
+                    </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" placeholder="Emaile" name="email" value="{{old('email')}}">
-                        <span class="text-danger">@error('email') {{$message}}@enderror</span>
-                
-                    <div class="form-group">
-                        <label for="name">password</label>
-                        <input type="password" class="form-control" placeholder="Password" name="password" value="{{old('password')}}">
-                        <span class="text-danger">@error('password') {{$message}}@enderror</span>
-                        <br>
-                 
-                 
-                        <button type="submit" class="btn btn-info">Jonatish</button>
-                        <br>
                    
-                    <a href="{{ route('login') }}">Login</a>
+                        <input type="hidden" class="form-control" placeholder="Emaile" name="email" value="{{ $user->email }}">
+                      
+                    </div>
+                    <div class="form-group">
+                        
+                        <input type="hidden" class="form-control" placeholder="Password" name="password" value="{{ $user->password }}">
+                      
+                    </div>
+                    <div class="form-group">
+                       
+                        <input type="hidden" class="form-control" name="code" value="{{ $user->code }}">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="name"><h4>Verfication Code</h4></label>
+                        <input type="number" class="form-control" placeholder="Vwefication Code" name="code_confirmation" value="{{ old('code_confirmation') }}">
+                        <span class="text-danger">@error('code_confirmation') {{$message}}@enderror</span>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-success">Save</button>    
+                   
+        
                 </form>
             </div>
         </div>
