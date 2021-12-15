@@ -48,6 +48,7 @@ Route::get('istor/{id}', [KarzinaController::class, 'istor'])->name('istor');
 Route::get('/login', [CustomAuthController::class,'login'])->name('login');
 Route::get('/registration', [CustomAuthController::class,'registration'])->name('registration');
 Route::post('/registrU', [CustomAuthController::class,'registrU'])->name('registrU');
+Route::post('/verfy', [CustomAuthController::class,'verfy'])->name('verfy');
 Route::get('/cod/{id}', [CustomAuthController::class,'cod'])->name('cod');
 Route::post('/registr-user', [CustomAuthController::class,'registrUser'])->name('registr-user');
 Route::post('login-user', [CustomAuthController::class,'loginuser'])->name('login-user');

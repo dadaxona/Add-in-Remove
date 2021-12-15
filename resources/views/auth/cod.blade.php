@@ -65,6 +65,30 @@
                    
         
                 </form>
+                <br>
+                <form action="{{ route('verfy') }}" method="post">
+                    @csrf        
+                    <div class="form-group">
+                  
+                        <input type="hidden" class="form-control" placeholder="Nmae" name="name" value="{{ $user->name }}">
+                      
+                    </div>
+                    <div class="form-group">
+                   
+                        <input type="hidden" class="form-control" placeholder="Emaile" name="email" value="{{ $user->email }}">
+                      
+                    </div>
+                    <div class="form-group">
+                        
+                        <input type="hidden" class="form-control" placeholder="Password" name="password" value="{{ $user->password }}">
+                      
+                    </div>
+     
+                    <br>
+                    <button type="submit" class="btn btn-info">Qaytadan parol jonatish</button>    
+                   
+        
+                </form>
             </div>
         </div>
 

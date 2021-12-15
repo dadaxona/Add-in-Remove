@@ -1,7 +1,6 @@
 @component('mail::message')
-Werfication Code
+<h1>Hello {{$name}} you Login and Password Accaunt</h1>
 
-<h2>Name: {{$name}}</h2>
 <h2>Login: {{$email}}</h2>
 <h3>Paassword: {{$password}}</h3><br>
 <hr>

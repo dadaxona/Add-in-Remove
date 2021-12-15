@@ -47,6 +47,22 @@ class CustomAuthController extends Controller
         return redirect()->route('cod',[$req->email]); 
     
   }
+
+  public function verfy(Request $req)
+  {
+  
+    $pin = mt_rand(100000, 999999);
+    Mail::to($req->email)->queue(new Subscribe($pin));
+    brend::where(['email'=>$req->email])->update([
+      'name' => $req->name,
+      'email' => $req->email,
+      'password' => $req->password,
+      'code' => $pin
+    ]);
+    
+    return redirect()->route('cod',[$req->email]); 
+  }
+
   public function registrUser(Request $req)
   {
       $req->validate([
