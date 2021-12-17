@@ -28,13 +28,13 @@
                     <form method="POST" action="/prod" enctype="multipart/form-data" class="form-control" >
                         @if (Session::has('success'))
 
-                        <div class="alert alert-success text-center">              
-            
-                            <p>{{ Session::get('success') }}</p>
-            
-                        </div>
-            
-                    @endif  
+                            <div class="alert alert-success text-center">              
+                
+                                <p>{{ Session::get('success') }}</p>
+                
+                            </div>
+                
+                        @endif  
                         @csrf
                             <div>
                                 <input type="text" name="name" placeholder="Tavar nomi" value="{{ old('name')}}" class="form-control" >

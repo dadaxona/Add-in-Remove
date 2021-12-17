@@ -3,126 +3,40 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pradut;
-use App\Models\Karzina;
-use App\Models\Karzin;
-use App\Models\Summa;
-use App\Models\Istoriya;
-use App\Models\Istoriyasumma;
-use Illuminate\Support\Facades\DB;
+use App\Providers\OOPServiceProject;
 
 class KarzinaController extends Controller
 {
-    public function index($clent)
+    public function index($clent, OOPServiceProject $data)
     {       
-        $id=$clent;
-        $karzin = Karzina::query()->where('clent', 'LIKE', "%{$id}%")->get()??[];
-        $k = Summa::where('clent', '=', $id)->first()??[];
-        return view('karzina.karzina', ["k"=>$k] ,compact('karzin'));      
+        return $data->get($clent);             
     }
-    public function show(Request $request)
+
+    public function show(Request $request, OOPServiceProject $data)
     {
         $request->validate([
             'son'=>'required',
             'clent'=>'required',
             'idy'=>'required'                
         ]);
-        $data = Pradut::find($request->idy);           
-        DB::table('karzinas')->insert([
-            'clent'=>$request->clent,
-            'idy'=>$request->idy,
-            'file'=>$data->file,
-            'name'=>$data->name,
-            'narx'=>$data->narx,
-            'narx2'=>$data->narx2,
-            'son'=>$request->son,
-            ]);
-            
-            $user = new Karzin;
-            $user->clent = $request->clent;
-            $user->idy= $request->idy;
-            $user->file= $data->file;
-            $user->name = $data->name;
-            $user->narx = $data->narx;
-            $user->narx2 = $data->narx2;
-            $user->son = $request->son;
-            $user->save();
-
-            $istor = new Istoriya;
-            $istor->clent = $request->clent;
-            $istor->file = $data->file;
-            $istor->name = $data->name;
-            $istor->son = $request->son;            
-            $istor->narx2 = $data->narx2;
-            $istor->save();
-
-            $sum = new Summa;
-            $sum->idd = $user->id;
-            $sum->clent = $request->clent;
-            $sum->idy = $request->idy;
-            $sum->summa = 0;
-            $sum->save();
-
-            $sum = new Summa;
-            $sum->idd = $user->id;
-            $sum->clent = $request->clent;
-            $sum->idy = $request->idy;
-            $sum->summa = $request->son;
-            $sum->save();
-          
-            $users = Summa::where('clent', '=', $request->clent)->first();     
-            $javob=$users->summa+$request->son * $data->narx2;            
-            Summa::where(['clent'=>$request->clent])->update(['summa' => $javob]);
-
-            $istors = new Istoriyasumma;
-            $istors->idd = $user->id;
-            $istors->clent = $request->clent;
-            $istors->idy = $request->idy;
-            $istors->istorisumma = 0;
-            $istors->save();
-
-            $istors = new Istoriyasumma;
-            $istors->idd = $user->id;
-            $istors->clent = $request->clent;
-            $istors->idy = $request->idy;
-            $istors->istorisumma = $request->son;
-            $istors->save();
-
-            $userse = Istoriyasumma::where('clent', '=', $request->clent)->first();     
-            $javob=$userse->istorisumma+$request->son * $data->narx2;            
-            $data = Istoriyasumma::where(['clent'=>$request->clent])->update(['istorisumma' => $javob]);
-
-            return redirect()->route('indexkar',[$request->clent]);               
+        return $data->create($request);             
     }
-    public function delete($id)
+    public function delete($id, OOPServiceProject $data)
     {
-        $data = Karzina::find($id);
-        $clent=$data->clent;
-        $data->delete();        
-        $users = Summa::where('id', '=', $id)->first();
-        $javob=$users->summa-$data->son * $data->narx2;            
-        $data = Summa::where(['clent'=>$users->clent])->update(['summa' => $javob]);
-        $datas = Summa::where('idd', '=', $id)->first();    
-        $datas->delete();  
-        return redirect()->route('indexkar',[$clent]);
+        return $data->delete($id);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, OOPServiceProject $data)
     {
-        DB::table('karzinas')->where('clent', 'LIKE', "%{$request->clent}%")->delete();
-        DB::table('summas')->where('clent', 'LIKE', "%{$request->clent}%")->delete();
-        return redirect('/dashbord');
+        return $data->store($request);
     } 
-    public function karz()
+    public function karz(OOPServiceProject $data)
     {
-        $kar=Karzin::all();
-        return view('karzina.bolim',['karz'=>$kar]);       
+        return $data->karz();      
     }
 
-    public function istor($id)
+    public function istor($id, OOPServiceProject $data)
     {
-        $istor=Istoriya::where('clent', '=', $id)->get();
-        $k = Istoriyasumma::query()->where('clent', 'LIKE', "%{$id}%")->first();
-        return view('karzina.istoriya',['karzin'=>$istor],compact('k'));
+        return $data->show($id);
     }
 }

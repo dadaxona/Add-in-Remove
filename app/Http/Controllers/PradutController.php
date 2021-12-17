@@ -3,21 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pradut;
-use App\Models\Prad2;
-use App\Models\pradut3;
-use App\Models\Pribl;
-use App\Models\Jamiyigim;
-use Illuminate\Support\Facades\DB;
-
+use App\Providers\ObjectService;
 class PradutController extends Controller
 {
-    public function index()
+    public function index(ObjectService $data)
     {
-        $a=Jamiyigim::all();
-        return view('jami.jami',['pro2'=>$a]);
+        return $data->index();
     }
-    public function create(Request $req)
+    public function create(Request $req, ObjectService $data)
     {
       $req->validate([
         'name'=>'required',
@@ -26,105 +19,26 @@ class PradutController extends Controller
         'narx'=>'required',          
         'narx2'=>'required',          
       ]);
-      DB::table('pradut')
-      ->where('name',$req->name)
-      ->delete();      
-      DB::table('prad2')
-      ->where('name',$req->name)
-      ->delete();  
-      DB::table('prad3')
-      ->where('name',$req->name)
-      ->delete();  
-      DB::table('pribl')
-      ->where('name',$req->name)
-      ->delete();
-      
-      $imageName = time().'.'.$req->file->getClientOriginalExtension();
-      $file=$req->file->move('publicimges', $imageName);
-
-      $photo = new Pradut;
-      $photo -> name = $req['name'];
-      $photo -> file = $file;         
-      $photo -> soni = $req['soni'];   
-      $photo -> narx = $req['narx'];   
-      $photo -> narx2 = $req['narx2'];   
-      $photo -> save();     
-    
-      $photo = new Prad2;
-      $photo -> name = $req['name'];                 
-      $photo -> soni = $req['soni'];   
-      $photo -> narx = $req['narx'];  
-      $photo -> save();
-
-      $p = new pradut3;
-      $p -> name = $req['name'];   
-      $re = $req['soni']-$req['soni'];      
-      $p -> soni = $re;      
-      $p -> narx2 = $req['narx2'];
-      $p -> save();
-
-      $data= new Pribl;
-      $data->name=$req['name'];        
-      $son=$data->abyom+$req['soni'];        
-      $data->abyom=$son;
-      $nar=$data->olinish+$req['narx'];
-      $data->olinish=$nar;
-      $nar2=$data->sotilish+$req['narx2'];
-      $data->sotilish=$nar2;
-      $prib2=$req['narx2']-$req['narx'];            
-      $data->pribl=$prib2;                  
-      $prib3=$data->jami=$req["soni"]*$prib2;      
-      $data->save();
-      
-      DB::table('jamiyigim')->insert(['narx2'=>0]);    
-      DB::table('jamiyigim')->insert(['narx2'=>$prib3]);     
-      $users = DB::table('jamiyigim')->select('narx2')->first();
-      $j=$users->narx2 + $prib3;
-      DB::table('jamiyigim')->update(['narx2' => $j]);
-      Jamiyigim::where('id','>',1)->delete();
-      return back()->with('success', 'Record Created Successfully.');    
+      return $data->create($req);  
     }
 
-    public function show()
+    public function show(ObjectService $data)
     {
-     $data = Pradut::all();
-     return view('prod',['prode'=>$data]);
+      return $data->show();
     }
 
-    public function edit($id)
+    public function edit($id, ObjectService $data)
     {
-      $data = Pradut::find($id);
-      return view('prod2',['pr'=>$data]);
+      return $data->edit($id);
     }
 
-    public function update(Request $req)
+    public function update(Request $req, ObjectService $data)
     {      
-      $imageName = time().'.'.$req->file->getClientOriginalExtension();
-      $file=$req->file->move('publicimges', $imageName); 
-      $data=Pradut::find($req->id);      
-      $data->name=$req->name;      
-      $data->file=$file;      
-      $data->soni=$req->soni;
-      $data->narx=$req->narx;
-      $data->narx2=$req->narx2;
-      $data->save();
-      return redirect('p2');   
+      return $data->update($req);
     }
-    public function delete($id)
+
+    public function delete($id, ObjectService $data)
     {      
-      $data = Pradut::find($id);
-      $data->delete();
-      $data = Prad2::find($id);
-      $data->delete();
-      $data = pradut3::find($id);
-      $data->delete();
-      $pribl = Pribl::find($id);
-      $pribl->delete();      
-      $jam=$pribl->jami;
-      $users = DB::table('jamiyigim')->select('narx2')->first();
-      $j=$users->narx2 - $jam;;
-      DB::table('jamiyigim')->update(['narx2' => $j]);     
-      return redirect('p2');   
-     
+      return $data->delete($id);     
     }  
 }
